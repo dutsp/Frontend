@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rock nas Cachoeiras — Prudentópolis</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #1a1a1a;
+    --vermelho: #cc1f1f;
+    --vermelho-vivo: #e63030;
+    --brasa: #ff6b2b;
+    --texto: #e8e8e8;
+    --muted: #666;
+    --border: #2a2a2a;
+    --branco: #fff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--texto);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--bg);
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--vermelho);
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 500px;
+    background: radial-gradient(ellipse at center, rgba(204,31,31,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-badge {
+    display: inline-block;
+    border: 1px solid var(--vermelho);
+    color: var(--vermelho-vivo);
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 0.35rem 1.1rem;
+    margin-bottom: 2rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+  }
+
+  header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    font-weight: 700;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  header h1 em {
+    font-style: normal;
+    color: var(--vermelho-vivo);
+    display: block;
+  }
+
+  header p {
+    margin-top: 1.2rem;
+    color: var(--muted);
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .header-info {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .header-info span {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .header-info strong { color: var(--texto); font-weight: 500; }
+
+  .btn-hero {
+    display: inline-block;
+    margin-top: 2.5rem;
+    background: var(--vermelho);
+    color: #fff;
+    padding: 0.9rem 3rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: none;
+    transition: background 0.2s, transform 0.15s;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-hero:hover { background: var(--vermelho-vivo); transform: translateY(-2px); }
+
+  /* ── WRAPPER ── */
+  .wrapper { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ── SECTIONS ── */
+  section { padding: 4rem 0; }
+
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--branco);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--vermelho);
+    padding-left: 1rem;
+  }
+
+  .section-title span { color: var(--vermelho-vivo); }
+
+  /* ── MÍDIA ── */
+  .media-stack { display: flex; flex-direction: column; gap: 1rem; }
+
+  .media-stack video,
+  .media-stack img {
+    width: 100%;
+    border-radius: 4px;
+    display: block;
+    object-fit: cover;
+    border: 1px solid var(--border);
+  }
+
+  .media-stack video { max-height: 320px; background: #000; }
+  .media-stack img { height: 240px; filter: grayscale(15%) contrast(1.1); }
+
+  .photos-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .photo-label {
+    position: relative;
+  }
+  .photo-label span {
+    position: absolute;
+    bottom: 10px; left: 12px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-left: 2px solid var(--vermelho);
+  }
+
+  .audio-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--vermelho);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .audio-box small {
+    font-size: 0.68rem;
+    color: var(--vermelho-vivo);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+  }
+  .audio-box p { font-weight: 500; margin: 0.2rem 0 0.6rem; color: var(--texto); }
+  audio { width: 100%; accent-color: var(--vermelho); }
+
+  /* ── TABLE ── */
+  .table-wrap {
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  thead { background: var(--vermelho); }
+  thead th {
+    padding: 0.9rem 1.2rem;
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  tbody tr { border-bottom: 1px solid var(--border); background: var(--surface); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+  td { padding: 0.9rem 1.2rem; }
+  td:first-child { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 1rem; color: var(--vermelho-vivo); letter-spacing: 0.05em; }
+
+  .headliner td:nth-child(2) {
+    color: #fff;
+    font-weight: 500;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.18rem 0.65rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+  .tag-a { background: rgba(204,31,31,0.2); color: #ff6060; border: 1px solid rgba(204,31,31,0.35); }
+  .tag-b { background: rgba(255,107,43,0.15); color: #ff8f5c; border: 1px solid rgba(255,107,43,0.3); }
+  .tag-c { background: rgba(180,180,180,0.1); color: #aaa; border: 1px solid rgba(180,180,180,0.2); }
+
+  /* ── FORM ── */
+  .form-card {
+    background: var(--surface);
+    border-radius: 4px;
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--vermelho);
+  }
+
+  .field { margin-bottom: 1.25rem; }
+
+  .field label {
+    display: block;
+    font-size: 0.7rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.45rem;
+  }
+
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="tel"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    color: var(--texto);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .field input::placeholder { color: #3a3a3a; }
+
+  .field input:focus {
+    border-color: var(--vermelho);
+    box-shadow: 0 0 0 3px rgba(204,31,31,0.15);
+  }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .tickets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+
+  .ticket { position: relative; }
+  .ticket input[type="radio"] { position: absolute; opacity: 0; }
+
+  .ticket-box {
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.18s;
+    background: var(--bg);
+  }
+
+  .ticket-box .name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--texto);
+  }
+  .ticket-box .price { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+
+  .ticket input[type="radio"]:checked + .ticket-box {
+    border-color: var(--vermelho);
+    background: rgba(204,31,31,0.08);
+    box-shadow: 0 0 0 1px var(--vermelho);
+  }
+
+  .ticket-box:hover { border-color: #444; }
+
+  .check-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    margin-top: 0.25rem;
+  }
+
+  input[type="checkbox"] { accent-color: var(--vermelho); margin-top: 2px; width: 16px; height: 16px; flex-shrink: 0; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--vermelho);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-submit:hover { background: var(--vermelho-vivo); transform: translateY(-1px); }
+
+  #success { display: none; text-align: center; padding: 2.5rem 0; }
+  #success .emoji { font-size: 2.5rem; }
+  #success h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    color: var(--vermelho-vivo);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.75rem;
+  }
+  #success p { color: var(--muted); margin-top: 0.5rem; font-size: 0.95rem; }
+
+  footer {
+    background: var(--surface);
+    color: var(--muted);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    border-top: 2px solid var(--vermelho);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  footer strong { color: var(--texto); }
+
+  hr { border: none; border-top: 1px solid var(--border); }
+
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+    .tickets  { grid-template-columns: 1fr; }
+    .photos-row { grid-template-columns: 1fr; }
+    .form-card { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-badge">Rock Festival · Prudentópolis – PR</div>
+  <h1>Rock nas<br><em>Cachoeiras</em></h1>
+  <p>Três dias de rock, fogo e natureza selvagem</p>
+
+  <div class="header-info">
+    <span><strong>15–17 AGO 2025</strong></span>
+    <span>//</span>
+    <span><strong>Parque Saltão, Prudentópolis</strong></span>
+    <span>//</span>
+    <span><strong>20+ bandas</strong></span>
+  </div>
+
+  <a href="#inscricao" class="btn-hero">Garantir Ingresso</a>
+</header>
+
+<!-- MÍDIA -->
+<div class="wrapper">
+  <section>
+    <h2 class="section-title">Veja o <span>Festival</span></h2>
+
+    <div class="media-stack">
+
+      <!-- Vídeo AC/DC -->
+      <video controls style="width:100%; max-height:320px; border-radius:4px; border:1px solid var(--border); background:#000;">
+        <source src="acdc_trecho.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo.
+      </video>
+
+      <!-- Fotos show de rock -->
+      <div class="photos-row">
+        <div class="photo-label">
+          <img
+            src="acdc.jpg"
+            alt="AC/DC ao vivo"
+            loading="lazy"
+          >
+          <span>AC/DC</span>
+        </div>
+        <div class="photo-label">
+          <img
+            src="metalica.jpg"
+            alt="Metallica ao vivo"
+            loading="lazy"
+          >
+          <span>Metallica</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- TABELA -->
+  <section>
+    <h2 class="section-title">Programação de <span>Shows</span></h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Horário</th>
+            <th>Banda / Artista</th>
+            <th>Palco</th>
+            <th>Dia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>17:00</td>
+            <td>Matanza</td>
+            <td><span class="tag tag-b">Palco Brasa</span></td>
+            <td>15/AGO</td>
+          </tr>
+          <tr>
+            <td>19:30</td>
+            <td>Fresno</td>
+            <td><span class="tag tag-c">Palco Pedra</span></td>
+            <td>15/AGO</td>
+          </tr>
+          <tr class="headliner">
+            <td>22:00</td>
+            <td>AC/DC Tribute</td>
+            <td><span class="tag tag-a">Palco Inferno</span></td>
+            <td>15/AGO</td>
+          </tr>
+          <tr>
+            <td>16:00</td>
+            <td>Capital Inicial</td>
+            <td><span class="tag tag-b">Palco Brasa</span></td>
+            <td>16/AGO</td>
+          </tr>
+          <tr>
+            <td>19:00</td>
+            <td>Raimundos</td>
+            <td><span class="tag tag-c">Palco Pedra</span></td>
+            <td>16/AGO</td>
+          </tr>
+          <tr class="headliner">
+            <td>22:00</td>
+            <td>Metallica Tribute</td>
+            <td><span class="tag tag-a">Palco Inferno</span></td>
+            <td>16/AGO</td>
+          </tr>
+          <tr>
+            <td>17:00</td>
+            <td>Pitty</td>
+            <td><span class="tag tag-b">Palco Brasa</span></td>
+            <td>17/AGO</td>
+          </tr>
+          <tr>
+            <td>19:30</td>
+            <td>Charlie Brown Jr. Tribute</td>
+            <td><span class="tag tag-c">Palco Pedra</span></td>
+            <td>17/AGO</td>
+          </tr>
+          <tr class="headliner">
+            <td>22:00</td>
+            <td>AC/DC + Metallica All Stars</td>
+            <td><span class="tag tag-a">Palco Inferno</span></td>
+            <td>17/AGO</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- FORMULÁRIO -->
+  <section id="inscricao">
+    <h2 class="section-title">Faça sua <span>Inscrição</span></h2>
+
+    <div class="form-card">
+      <form id="festForm" onsubmit="handleSubmit(event)">
+
+        <div class="two-col">
+          <div class="field">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" placeholder="Seu nome" required>
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="seu@email.com" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="tel">Telefone</label>
+          <input type="tel" id="tel" placeholder="(42) 99999-9999" oninput="maskPhone(this)">
+        </div>
+
+        <div class="field">
+          <label>Tipo de ingresso</label>
+          <div class="tickets">
+            <label class="ticket">
+              <input type="radio" name="ingresso" value="pista" required>
+              <div class="ticket-box">
+                <div class="name">Pista</div>
+                <div class="price">R$ 80</div>
+              </div>
+            </label>
+            <label class="ticket">
+              <input type="radio" name="ingresso" value="vip">
+              <div class="ticket-box">
+                <div class="name">VIP</div>
+                <div class="price">R$ 160</div>
+              </div>
+            </label>
+            <label class="ticket">
+              <input type="radio" name="ingresso" value="camarote">
+              <div class="ticket-box">
+                <div class="name">Camarote</div>
+                <div class="price">R$ 280</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <label class="check-label">
+          <input type="checkbox" id="news">
+          Quero receber atualizações e novidades do festival por e-mail
+        </label>
+
+        <button type="submit" class="btn-submit">Confirmar Inscrição</button>
+
+      </form>
+
+      <div id="success">
+        <div class="emoji">🤘</div>
+        <h3>Inscrição Confirmada!</h3>
+        <p id="success-msg"></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Rock nas Cachoeiras</strong> — Prudentópolis, Paraná</p>
+  <p style="margin-top:0.4rem;">Parque Saltão · 15 a 17 de Agosto</p>
+</footer>
+
+<script>
+  function maskPhone(el) {
+    let v = el.value.replace(/\D/g,'').slice(0,11);
+    if (v.length > 6) v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+    else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+    else if (v.length) v = '(' + v;
+    el.value = v;
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const nome = document.getElementById('nome').value.trim();
+    const ticket = document.querySelector('input[name="ingresso"]:checked');
+    const news = document.getElementById('news').checked;
+    const labels = { pista:'Pista', vip:'VIP', camarote:'Camarote' };
+    const msg = `Tudo certo, ${nome}! Seu ingresso ${labels[ticket.value]} está garantido para o Rock nas Cachoeiras.`
+      + (news ? ' Você receberá novidades por e-mail.' : '');
+    document.getElementById('festForm').style.display = 'none';
+    document.getElementById('success-msg').textContent = msg;
+    document.getElementById('success').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
